@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +9,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-zinc-950 text-white">
-    <!-- Navbar -->
+<body class="bg-zinc-950 text-white min-h-screen">
+    <!-- NAV -->
     <nav class="fixed top-0 w-full bg-zinc-900 border-b border-emerald-500/30 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-2xl font-bold">EM</div>
-                <h1 class="text-2xl font-bold">English Master</h1>
+                <div class="w-11 h-11 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl flex items-center justify-center text-3xl font-bold">EM</div>
+                <h1 class="text-3xl font-bold tracking-tight">English Master</h1>
             </div>
-            <div class="flex items-center gap-8 text-sm font-medium">
-                <a href="#" onclick="navigate('home')" class="hover:text-emerald-400">Home</a>
-                <a href="#" onclick="navigate('levels')" class="hover:text-emerald-400">Levels</a>
-                <a href="#" onclick="navigate('vocabulary')" class="hover:text-emerald-400">Vocabulary</a>
-                <a href="#" onclick="navigate('grammar')" class="hover:text-emerald-400">Grammar</a>
-                <a href="#" onclick="navigate('quiz')" class="hover:text-emerald-400">Quiz</a>
-                <a href="#" onclick="navigate('profile')" class="hover:text-emerald-400">Profile</a>
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <button onclick="navigate('home')" class="hover:text-emerald-400">მთავარი</button>
+                <button onclick="navigate('levels')" class="hover:text-emerald-400">დონეები</button>
+                <button onclick="navigate('vocabulary')" class="hover:text-emerald-400">სიტყვები</button>
+                <button onclick="navigate('grammar')" class="hover:text-emerald-400">გრამატიკა</button>
+                <button onclick="navigate('quiz')" class="hover:text-emerald-400">ტესტი</button>
+                <button onclick="navigate('profile')" class="hover:text-emerald-400">პროფილი</button>
             </div>
         </div>
     </nav>
 
-    <div class="pt-20 max-w-7xl mx-auto px-6">
+    <div class="pt-24 max-w-7xl mx-auto px-6 pb-20">
         <!-- HOME -->
-        <section id="home" class="py-20">
-            <div class="text-center">
+        <section id="home">
+            <div class="text-center py-20">
                 <h1 class="text-6xl font-bold mb-6">Welcome to English Master</h1>
-                <p class="text-xl text-zinc-300 max-w-2xl mx-auto">Start your English journey from beginner to advanced. Learn words, grammar, pronunciation and speaking step by step.</p>
+                <p class="text-xl text-zinc-300 max-w-2xl mx-auto">Start your English journey from beginner to advanced. Learn vocabulary, grammar, pronunciation, listening and speaking step by step.</p>
                 <div class="flex flex-wrap justify-center gap-4 mt-12">
                     <button onclick="navigate('levels')" class="px-10 py-5 bg-emerald-500 hover:bg-emerald-600 rounded-3xl text-xl font-semibold">Start Learning</button>
-                    <button onclick="startDailyChallenge()" class="px-10 py-5 border border-emerald-500 rounded-3xl text-xl font-semibold">Daily Challenge</button>
+                    <button onclick="startDailyChallenge()" class="px-10 py-5 border-2 border-emerald-500 rounded-3xl text-xl font-semibold">Daily Challenge</button>
                 </div>
             </div>
         </section>
 
         <!-- LEVELS -->
-        <section id="levels" class="hidden py-20">
-            <h2 class="text-4xl font-bold mb-12 text-center">Choose Your Level</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="levels-grid"></div>
+        <section id="levels" class="hidden">
+            <h2 class="text-4xl font-bold text-center mb-12">Choose Your Level</h2>
+            <div id="levels-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
 
         <!-- VOCABULARY -->
-        <section id="vocabulary" class="hidden py-20">
+        <section id="vocabulary" class="hidden">
             <h2 class="text-4xl font-bold mb-8">Vocabulary</h2>
-            <div class="flex gap-4 mb-8">
-                <select id="level-select" onchange="loadVocabulary()" class="bg-zinc-900 p-4 rounded-2xl"></select>
-            </div>
-            <div id="vocab-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <select id="level-filter" onchange="loadVocab()" class="bg-zinc-900 p-4 rounded-2xl mb-8"></select>
+            <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- GRAMMAR -->
-        <section id="grammar" class="hidden py-20">
+        <section id="grammar" class="hidden">
             <h2 class="text-4xl font-bold mb-12">Grammar Lessons</h2>
-            <div id="grammar-list" class="space-y-8"></div>
+            <div id="grammar-container" class="space-y-10"></div>
         </section>
 
         <!-- QUIZ -->
-        <section id="quiz" class="hidden py-20">
-            <h2 class="text-4xl font-bold mb-8">Quiz Time</h2>
-            <div id="quiz-container" class="glass p-10 rounded-3xl"></div>
+        <section id="quiz" class="hidden">
+            <h2 class="text-4xl font-bold mb-8">Quiz</h2>
+            <div id="quiz-area" class="glass rounded-3xl p-10"></div>
         </section>
 
         <!-- PROFILE -->
-        <section id="profile" class="hidden py-20">
-            <div class="max-w-md mx-auto glass rounded-3xl p-10">
+        <section id="profile" class="hidden">
+            <div class="glass rounded-3xl p-10 max-w-lg mx-auto">
                 <div class="text-center">
-                    <div id="profile-avatar" class="w-24 h-24 bg-emerald-500 rounded-full mx-auto flex items-center justify-center text-4xl">👤</div>
-                    <h3 id="username" class="text-3xl font-bold mt-6">Student</h3>
-                    <div class="mt-8 space-y-6">
-                        <div class="flex justify-between"><span>XP</span><span id="xp">1240</span></div>
-                        <div class="flex justify-between"><span>Level</span><span id="level">12</span></div>
-                        <div class="flex justify-between"><span>Streak</span><span id="streak">7 days 🔥</span></div>
+                    <div class="w-28 h-28 mx-auto bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-6xl">🏆</div>
+                    <h3 id="profile-name" class="text-3xl font-bold mt-6">Alex Tskitishvili</h3>
+                    <div class="mt-8 grid grid-cols-2 gap-6 text-left">
+                        <div>XP: <span id="xp-display" class="font-bold text-emerald-400">1240</span></div>
+                        <div>Level: <span id="level-display" class="font-bold">12</span></div>
+                        <div>Streak: <span id="streak-display" class="font-bold text-orange-400">7 🔥</span></div>
+                        <div>Words Learned: <span id="words-learned" class="font-bold">342</span></div>
                     </div>
                 </div>
             </div>
@@ -86,9 +85,12 @@
 
     <!-- WORD MODAL -->
     <div id="word-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <div class="glass rounded-3xl p-10 max-w-md w-full">
-            <div id="modal-content"></div>
-            <button onclick="closeModal()" class="mt-8 w-full py-4 bg-white text-black rounded-2xl font-semibold">Close</button>
+        <div class="glass rounded-3xl p-10 max-w-md w-full mx-4">
+            <div id="modal-body"></div>
+            <div class="flex gap-4 mt-8">
+                <button onclick="speakWord()" class="flex-1 py-4 border border-emerald-500 rounded-2xl">🔊 Listen (British)</button>
+                <button onclick="closeWordModal()" class="flex-1 py-4 bg-white text-black rounded-2xl">Close</button>
+            </div>
         </div>
     </div>
 
